@@ -5,10 +5,14 @@ To-Do-List application api &amp; unit test
 
 project setup
 
-npm i -g typeorm
-npx typeorm init --name restAPi --database postgres
-npm i
-npx typeorm migration:create ./src/migration/user
+- npm i -g typeorm
+ 
+- npx typeorm init --name restAPi --database postgres
+
+- npm i
+  
+- npx typeorm migration:create ./src/migration/user
+
 
 Steps to run this project:
 
