@@ -1,3 +1,6 @@
+# Final-Project-Back-end---Dev-Init
+To-Do-List application api &amp; unit test
+
 # Awesome Project Build with TypeORM
 
 project setup
@@ -19,5 +22,3 @@ FOR DEV
 FOR PRD
 -  docker compose up
 -  docker compose up --build
-
-
