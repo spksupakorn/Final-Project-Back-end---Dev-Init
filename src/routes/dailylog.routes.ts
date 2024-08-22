@@ -5,9 +5,10 @@ import { authorization } from "../middleware/authorization";
 
 const Router = express.Router();
 
-Router.get("/dailylogs", authentification, DailyLogController.getAllDailylogs);
-Router.post("/dailylogs", authentification, DailyLogController.createDailylog);
-Router.put("/dailylogs/:id", authentification, authorization(["admin"]), DailyLogController.updateDailylog);
-Router.delete("/dailylogs/:id", authentification, authorization(["admin"]), DailyLogController.deleteDailylog);
+Router.get("/logs", authentification, authorization(["user"]), DailyLogController.getAllDailylogs);
+Router.get("/logs/:id", authentification, authorization(["user"]), DailyLogController.getDailylogById);
+Router.post("/logs", authentification, authorization(["user"]), DailyLogController.createDailylog);
+Router.put("/logs/:id", authentification, authorization(["user"]), DailyLogController.updateDailylog);
+Router.delete("/logs/:id", authentification, authorization(["user"]), DailyLogController.deleteDailylog);
 
 export { Router as dailylogRouter };

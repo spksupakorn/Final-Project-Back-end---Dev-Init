@@ -1,13 +1,10 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User.entity";
 
 @Entity({ name: "calendar" })
 export class Calendar {
     @PrimaryGeneratedColumn("uuid")
-    event_id: string;
-
-    @ManyToOne(() => User, user => user.user_id)
-    user: User;
+    id: string;
 
     @Column({ nullable: false })
     title: string;
@@ -20,6 +17,10 @@ export class Calendar {
 
     @Column({ type: "timestamptz", precision: 3 })
     end_date: Date;
+
+    @ManyToOne(() => User, (user) => user.calendars)
+    @JoinColumn({ name: "user_id" })
+    user: User;
 
     @CreateDateColumn({ type: "timestamptz", precision: 3 })
     createdAt: Date;

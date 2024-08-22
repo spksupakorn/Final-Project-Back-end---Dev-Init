@@ -1,4 +1,4 @@
-export class Userresponce {
+export class UserResponce {
     username: string;
     email: string;
     role: string;

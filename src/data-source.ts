@@ -1,11 +1,11 @@
 import "reflect-metadata";
 import { DataSource } from "typeorm";
+import { User } from "./entity/User.entity";
+import { ToDoList } from "./entity/ToDoList.entity";
+import { DailyLog } from "./entity/DailyLog.entity";
+import { Calendar } from "./entity/Calender.entity";
 
 import * as dotenv from "dotenv";
-// import { User } from "./entity/User.entity";
-// import { DailyLog } from "./entity/DailyLog.entity";
-// import { ToDoList } from "./entity/ToDoList.entity";
-// import { Calendar } from "./entity/Calender.entity";
 
 dotenv.config();
 
@@ -20,8 +20,9 @@ export const AppDataSource = new DataSource({
     database: DB_DATABASE,
 
     synchronize: NODE_ENV === "dev" ? false : false,
-    logging: NODE_ENV === "dev" ? false : false, //logging logs sql command on the treminal
-    entities: ["./entity/*..js"],
-    migrations: [__dirname + "/migration/*.ts"],
+    logging: NODE_ENV === "dev" ? false : false, 
+//logging logs sql command on the treminal
+    entities: [User, ToDoList, DailyLog, Calendar],
+    // migrations: [__dirname + "/migration/*.ts"],
     subscribers: [],
 });

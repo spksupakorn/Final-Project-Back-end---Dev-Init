@@ -1,4 +1,4 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { User } from "./User.entity";
 
 export enum TodoStatus {
@@ -9,10 +9,7 @@ export enum TodoStatus {
 @Entity({ name: "to_do_list" })
 export class ToDoList {
     @PrimaryGeneratedColumn("uuid")
-    todo_id: string;
-    
-    @ManyToOne(() => User, user => user.user_id)
-    user: User;
+    id: string;
 
     @Column({ length: 100, nullable: false })
     title: string;
@@ -32,6 +29,10 @@ export class ToDoList {
         default: TodoStatus.PENDING,
     })
     status: TodoStatus;
+
+    @ManyToOne(() => User, (user) => user.todo_lists)
+    @JoinColumn({ name: "user_id" })
+    user: User;
 
     @CreateDateColumn({ type: "timestamptz", precision: 3 })
     createdAt: Date;

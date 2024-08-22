@@ -1,9 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn } from "typeorm";
-
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, OneToMany } from "typeorm";
+import { ToDoList } from "./ToDoList.entity"; 
+import { DailyLog } from "./DailyLog.entity";
+import { Calendar } from "./Calender.entity";
 @Entity({ name: "users" })
 export class User {
     @PrimaryGeneratedColumn("uuid")
-    user_id: string;
+    id: string;
 
     @Column({ length: 50, unique: true, nullable: false })
     username: string;
@@ -16,6 +18,15 @@ export class User {
     
     @Column({ default: "user" })
     role: string;
+
+    @OneToMany(() => ToDoList, (todo_list) => todo_list.user)
+    todo_lists: ToDoList[]
+
+    @OneToMany(() => DailyLog, (daily_log) => daily_log.user)
+    daily_logs: DailyLog[]
+
+    @OneToMany(() => Calendar, (calendar) => calendar.user)
+    calendars: Calendar[]
     
     @CreateDateColumn({ type: "timestamptz", precision: 3 })
     createdAt: Date;
